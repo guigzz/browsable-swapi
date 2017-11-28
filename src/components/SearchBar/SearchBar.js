@@ -76,6 +76,7 @@ class SearchBar extends Component {
                 <p className="control">
                   <input 
                     className="input" 
+                    ref={(input) => { this.searchInput = input; }}
                     type="text" 
                     placeholder="Search" 
                     value={this.state.search} 
@@ -154,17 +155,21 @@ class SearchBar extends Component {
 
   handleNavResultsClick(isNext) {
     this.setState({
-      isSearching: true
+      isSearching: true,
+      showResults: true
     });
+    this.searchInput.focus();
 
     const fetchUrl = isNext ? this.state.results.next : this.state.results.previous;
 
     fetch(fetchUrl)
     .then( response => response.json())
     .then( (res) => {
+      
       return this.setState({
         results: res,
-        isSearching: false
+        isSearching: false,
+        showResults: true
       });
     });
   }

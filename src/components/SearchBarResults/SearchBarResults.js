@@ -62,18 +62,22 @@ class SearchBarResults extends Component {
                     {
                       this.props.results.next !== null || this.props.previous !== null 
                       ? (
-                        <div className="results-nav">
-                          <div className="results-nav-previous">
+                        <div className="results-nav columns is-mobile">
+                          <div className="results-nav-previous column is-half">
                             {
                               this.props.results.previous !== null 
-                              ? <span>previous</span> 
+                              ? <button 
+                                className="button is-outlined is-pulled-right" 
+                                onClick={this.props.onClickPrevious} >previous</button>
                               : null
                             }
                           </div>
-                          <div className="results-nav-next">
+                          <div className="results-nav-next column is-half">
                             {
                               this.props.results.next !== null 
-                              ? <span>next</span> 
+                              ? <button 
+                                className="button is-outlined" 
+                                onClick={this.props.onClickNext} >next</button> 
                               : null
                             }
                           </div>
