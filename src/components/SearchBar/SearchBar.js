@@ -16,6 +16,7 @@ class SearchBar extends Component {
       search: "",
       type: "",
       isSearching: false,
+      showResults: false,
       types: {},
       results: []
     };
@@ -78,16 +79,22 @@ class SearchBar extends Component {
                     type="text" 
                     placeholder="Search" 
                     value={this.state.search} 
-                    onChange={this.handleSearchChange.bind(this)}/>
+                    onChange={this.handleSearchChange.bind(this)} 
+                    onFocus={this.handleSearchFocus.bind(this)} 
+                    onBlur={this.handleSearchBlur.bind(this)} />
                 </p>
               </div>
             </div>
-            <SearchBarResult 
-              isSearching={this.state.isSearching} 
-              results={this.state.results} 
-              type={this.state.type} 
-              onClickPrevious={this.handlePreviousResultsClick.bind(this)} 
-              onClickNext={this.handleNextResultsClick.bind(this)} />
+            {
+              this.state.showResults 
+              ? <SearchBarResult 
+                  isSearching={this.state.isSearching} 
+                  results={this.state.results} 
+                  type={this.state.type} 
+                  onClickPrevious={this.handlePreviousResultsClick.bind(this)} 
+                  onClickNext={this.handleNextResultsClick.bind(this)} />
+              : null
+            }
           </div>
         </div>
       </div>
@@ -111,6 +118,22 @@ class SearchBar extends Component {
       });
       this.search(what);
     }
+  }
+
+  handleSearchFocus(e) {
+    this.setState({
+      showResults: true
+    });
+  }
+
+  handleSearchBlur(e) {
+    // set timeout so that the click on an item Link effectively happen
+    setTimeout(() => {
+      this.setState({
+        showResults: false
+      });
+    },100);
+    
   }
 
   handleSelectChange(e) {
