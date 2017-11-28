@@ -1,0 +1,22 @@
+@import 'styles/theme';
+
+.searchbar-results {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+
+  .results-content {
+    background-color: #ffffff;
+    border: 1px solid #cacaca;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .searchbar-results {
+    .results-content {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+  }
+}

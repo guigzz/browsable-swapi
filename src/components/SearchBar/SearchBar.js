@@ -54,8 +54,8 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div className="searchbar level is-centered">
-        <div className="level-item">
+      <div className="searchbar columns is-centered">
+        <div className="column is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-hone-third-fullhd">
           <div>
             <div className="searchbar-header columns is-mobile">
               <div className="select column is-narrow">
