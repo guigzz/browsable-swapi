@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './SearchBar.css';
 import SearchBarResult from '../SearchBarResults/SearchBarResults';
-import { API_ROOT } from '../../utils/constants';
+import { API_ROOT, FETCH_DELAY } from '../../utils/constants';
 
 const SEARCH = "?search=";
 
 class SearchBar extends Component {
   constructor() {
     super();
+
+    // the id returned by setTimeout, used to fetch data with a delay (see below)
+    this.fetchLock = null;
 
     this.state = {
       search: "",
@@ -33,23 +36,26 @@ class SearchBar extends Component {
   }
 
   search(what) {
-    fetch(this.state.types[this.state.type] + SEARCH + what.toLowerCase())
-    .then( response => response.json())
-    .then( (res) => {
-      // just in case we receive un previous search result while searching an empty string
-      if(this.state.search.length !== 0) {
-        return this.setState({
-          results: res,
-          isSearching: false
-        });
-      }
-      else {
-        return this.setState({
-          results: [],
-          isSearching: false
-        });
-      }
-    });
+    clearTimeout(this.fetchLock);
+    this.fetchLock = setTimeout(() => {
+      fetch(this.state.types[this.state.type] + SEARCH + what.toLowerCase())
+      .then( response => response.json())
+      .then( (res) => {
+        // just in case we receive un previous search result while searching an empty string
+        if(this.state.search.length !== 0) {
+          return this.setState({
+            results: res,
+            isSearching: false
+          });
+        }
+        else {
+          return this.setState({
+            results: [],
+            isSearching: false
+          });
+        }
+      });
+    }, FETCH_DELAY);
   }
 
   render() {
