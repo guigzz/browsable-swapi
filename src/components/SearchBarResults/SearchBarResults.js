@@ -55,7 +55,7 @@ class SearchBarResults extends Component {
                               subtext = "<Unknown>";
                               break;
                           }
-                          return <Link to={`/info/${this.props.type}/${extractId(r.url)}`}><SearchBarResultItem key={text} text={text} subText={subtext} /></Link>
+                          return <Link key={text} to={`/info/${this.props.type}/${extractId(r.url)}`}><SearchBarResultItem text={text} subText={subtext} /></Link>
                         })}
                       </ul>
                     </div>
