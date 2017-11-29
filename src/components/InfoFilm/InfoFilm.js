@@ -44,6 +44,18 @@ class InfoFilm extends Component {
       <div className="columns is-centered">
         <div className="column is-two-thirds links-container">
 
+          {/* OPENING CRAWL */}
+          <div>
+            <div className="opening-section">
+              <h2>
+                <span className="section-title">OPENING CRAWL</span>
+              </h2>
+              <p>
+                {this.props.data.opening_crawl}
+              </p>
+            </div>
+          </div>
+
           {/* CHARACTERS (PEOPLE) */}
           <div>
           {
