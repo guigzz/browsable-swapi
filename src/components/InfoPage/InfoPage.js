@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './InfoPage.css';
 import { API_ROOT } from '../../utils/constants';
+import Store from '../../utils/Store';
 import InfoPeople from '../InfoPeople/InfoPeople';
 import InfoFilm from '../InfoFilm/InfoFilm';
 import InfoPlanet from '../InfoPlanet/InfoPlanet';
@@ -11,6 +12,9 @@ import InfoStarship from '../InfoStarship/InfoStarship';
 class InfoPage extends Component {
   constructor() {
     super();
+
+    this.store = new Store();
+
     this.state = {
       data: null
     };
@@ -70,17 +74,26 @@ class InfoPage extends Component {
   }
 
   fetchData(props) {
-    console.log("fetch data");
-    this.setState({ // reset, so we can use this transition-state to display a loader
-      data: null
-    });
-    fetch(API_ROOT + props.match.params.type + "/" + props.match.params.id)
-    .then( response => response.json())
-    .then( (data) => {
+    const resourceUrl = `${API_ROOT}${props.match.params.type}/${props.match.params.id}/`;
+    const localData = this.store.get(resourceUrl);
+    if(localData !== null) {
       this.setState({
-        data: data
+        data: localData
       });
-    });
+    }
+    else {
+      this.setState({ // reset, so we can use this transition-state to display a loader
+        data: null
+      });
+      fetch(resourceUrl)
+      .then( response => response.json())
+      .then( (data) => {
+        this.setState({
+          data: data
+        });
+        this.store.set(resourceUrl, data);
+      });
+    }
   }
 }
 

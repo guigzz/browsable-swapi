@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './InfoPeople.css';
 import { extractId } from '../../utils/functions';
+import Store from '../../utils/Store';
 
 class InfoPeople extends Component {
   constructor() {
     super();
+
+    this.store = new Store();
 
     this.generalFields = [
       "height", "mass", "hair_color", "skin_color", "eye_color", "birth_year", "gender"
@@ -26,23 +29,42 @@ class InfoPeople extends Component {
    */
   componentDidMount() {
     // get the homeworld
-    fetch(this.props.data.homeworld)
-    .then( response => response.json())
-    .then( (res) => {
+    let localHomeworld = this.store.get(this.props.data.homeworld);
+    if(localHomeworld !== null) {
       this.setState({
-        homeworld: res
+        homeworld: localHomeworld
       });
-    });
-
-    // get the species if only one
-    if(this.props.data.species.length === 1) {
-      fetch(this.props.data.species[0])
+    }
+    else {
+      fetch(this.props.data.homeworld)
       .then( response => response.json())
       .then( (res) => {
         this.setState({
-          species: [res]
+          homeworld: res
         });
+        this.store.set(this.props.data.homeworld, res);
       });
+    }
+    
+
+    // get the species if only one
+    if(this.props.data.species.length === 1) {
+      let localSPecies = this.store.get(this.props.data.species[0]);
+      if(localSPecies !== null) {
+        this.setState({
+          species: [localSPecies]
+        });
+      }
+      else {
+        fetch(this.props.data.species[0])
+        .then( response => response.json())
+        .then( (res) => {
+          this.setState({
+            species: [res]
+          });
+          this.store.set(this.props.data.species[0], res);
+        });
+      }
     }
   }
 
@@ -262,77 +284,67 @@ class InfoPeople extends Component {
   }
 
   handleFilmClick(e) {
-    for(let film of this.props.data.films) {
-      fetch(film)
-      .then( response => response.json())
-      .then( (res) => {
-        if(this.state.films === null) {
-          this.setState({
-            films: [res]
-          });
-        }
-        else {
-          this.setState({
-            films: [...this.state.films, res]
-          });
-        }
-      });
-    }
+    this.handleGenericClick('films', 'films');
   }
 
   handleSpeciesClick(e) {
-    for(let species of this.props.data.species) {
-      fetch(species)
-      .then( response => response.json())
-      .then( (res) => {
-        if(this.state.species === null) {
-          this.setState({
-            species: [res]
-          });
-        }
-        else {
-          this.setState({
-            species: [...this.state.species, res]
-          });
-        }
-      });
-    }
+    this.handleGenericClick('species', 'species');
   }
 
   handleVehicleClick(e) {
-    for(let vehicles of this.props.data.vehicles) {
-      fetch(vehicles)
-      .then( response => response.json())
-      .then( (res) => {
-        if(this.state.vehicles === null) {
-          this.setState({
-            vehicles: [res]
-          });
-        }
-        else {
-          this.setState({
-            vehicles: [...this.state.vehicles, res]
-          });
-        }
-      });
-    }
+    this.handleGenericClick('vehicles', 'vehicles');
   }
 
   handleStarshipClick(e) {
-    for(let starships of this.props.data.starships) {
-      fetch(starships)
-      .then( response => response.json())
-      .then( (res) => {
-        if(this.state.starships === null) {
-          this.setState({
-            starships: [res]
-          });
-        }
-        else {
-          this.setState({
-            starships: [...this.state.starships, res]
-          });
-        }
+    this.handleGenericClick('starships', 'starships');
+  }
+
+  /**
+   * generic method to handle retrieving of data
+   * @param {string} propsType the name of the props.data property that we handle
+   * @param {string} stateType the name of the state property that we handle
+   */
+  handleGenericClick(propsType, stateType) {
+    let localDataArray = [];
+    let toBeFetchedData = [];
+    for(let elm of this.props.data[propsType]) {
+      const localData = this.store.get(elm);
+      if(localData !== null) { // we already have this piece of data in local storage
+        console.log(`get ${elm} from store`);
+        localDataArray.push(localData);
+      }
+      else {
+        console.log(`add ${elm} to the fetch list`);
+        toBeFetchedData.push(elm);
+      }
+    }
+
+    if(localDataArray.length !== 0) {
+      this.addToState(stateType, localDataArray);
+    }
+    if(toBeFetchedData.length !== 0) {
+      for(let d of toBeFetchedData) {
+        fetch(d)
+        .then( response => response.json())
+        .then( (res) => {
+          this.addToState(stateType, [res]);
+          console.log("has been fetched :");
+          console.log(res);
+          this.store.set(d, res);
+        });
+      }
+    }
+  }
+
+  addToState(type, val) {
+    if(this.state[type] === null) {
+      this.setState({
+        [type]: [...val]
+      });
+    }
+    else {
+      this.setState({
+        [type]: [...this.state[type], ...val]
       });
     }
   }
