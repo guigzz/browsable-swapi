@@ -49,14 +49,14 @@ class InfoPeople extends Component {
   render() {
     return (
     <div className="info-people box container">
-      <div className="title is-2"><span>{this.props.data.name}</span></div>
+      <div className="title"><span>{this.props.data.name}</span></div>
       <div className="columns">
         <div className="column">
           <div className="columns">
-            <div className="column is-half illustration">
-              <img className="is-pulled-right" src="http://via.placeholder.com/200x300" alt={this.props.data.name} />
+            <div className="column is-half-tablet illustration">
+              <img className="" src="http://via.placeholder.com/200x300" alt={this.props.data.name} />
             </div>
-            <div className="column general-info">
+            <div className="column is-half-tablet general-info">
               {this.generalFields.map((field) => {
                 return <p key={field}><span className="field-name">{field}: </span><span className="field-value">{this.props.data[field]}</span></p>
               })}
@@ -92,8 +92,8 @@ class InfoPeople extends Component {
           </div>
         </div>
       </div>
-      <div className="columns">
-        <div className="column links-container">
+      <div className="columns is-centered">
+        <div className="column is-two-thirds links-container">
 
           {/* FILMS */}
           <div>
@@ -101,22 +101,32 @@ class InfoPeople extends Component {
             this.props.data.films.length > 0 
             ? (
               <div className="films-section">
-                <h2>FILMS</h2>
                 <div>
                   {
                     this.state.films === null 
-                    ? <button className="button is-outlined" onClick={this.handleFilmClick.bind(this)}>Show films</button>
+                    ? (
+                        <div>
+                          <h2>
+                            <span className="section-title clickable" onClick={this.handleFilmClick.bind(this)}>FILMS <span className="caret">&#10225;</span></span>
+                          </h2>
+                        </div>
+                      )
                     : (
-                      <ul className="elements-container">
-                        {this.state.films.map((elm) => {
-                          return (
-                            <Link key={elm.episode_id} to={`/info/films/${extractId(elm.url)}`}>
-                              <li>{elm.title}</li>
-                            </Link>
-                          )
-                        })}
-                      </ul>
-                    )
+                        <div>
+                          <h2>
+                            <span className="section-title">FILMS <span className="caret">&#10225;</span></span>
+                          </h2>
+                          <ul className="elements-container">
+                            {this.state.films.map((elm) => {
+                              return (
+                                <Link key={elm.episode_id} to={`/info/films/${extractId(elm.url)}`}>
+                                  <li>{elm.title}</li>
+                                </Link>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      )
                   }
                 </div>
               </div>
@@ -131,22 +141,32 @@ class InfoPeople extends Component {
             this.props.data.species.length > 1 
             ? (
               <div className="species-section">
-                <h2>SPECIES</h2>
                 <div>
                   {
                     this.state.species === null 
-                    ? <button className="button is-outlined" onClick={this.handleSpeciesClick.bind(this)}>Show Species</button>
+                    ? (
+                        <div>
+                          <h2>
+                            <span className="section-title clickable" onClick={this.handleSpeciesClick.bind(this)}>SPECIES <span className="caret">&#10225;</span></span>
+                          </h2>
+                        </div>
+                      )
                     : (
-                      <ul className="elements-container">
-                        {this.state.species.map((elm) => {
-                          return (
-                            <Link key={elm.name} to={`/info/species/${extractId(elm.url)}`}>
-                              <li>{elm.name}</li>
-                            </Link>
-                          )
-                        })}
-                      </ul>
-                    )
+                        <div>
+                          <h2>
+                            <span className="section-title">SPECIES <span className="caret">&#10225;</span></span>
+                          </h2>
+                          <ul className="elements-container">
+                            {this.state.species.map((elm) => {
+                              return (
+                                <Link key={elm.name} to={`/info/species/${extractId(elm.url)}`}>
+                                  <li>{elm.name}</li>
+                                </Link>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      )
                   }
                 </div>
               </div>
@@ -161,22 +181,32 @@ class InfoPeople extends Component {
             this.props.data.vehicles.length > 0 
             ? (
               <div className="vehicles-section">
-                <h2>VEHICLES</h2>
                 <div>
                   {
                     this.state.vehicles === null 
-                    ? <button className="button is-outlined" onClick={this.handleVehicleClick.bind(this)}>Show Vehicles</button>
+                    ? (
+                        <div>
+                          <h2>
+                            <span className="section-title clickable" onClick={this.handleVehicleClick.bind(this)}>VEHICLES <span className="caret">&#10225;</span></span>
+                          </h2>
+                        </div>
+                      )
                     : (
-                      <ul className="elements-container">
-                        {this.state.vehicles.map((elm) => {
-                          return (
-                            <Link key={elm.name} to={`/info/vehicles/${extractId(elm.url)}`}>
-                              <li>{elm.name}</li>
-                            </Link>
-                          )
-                        })}
-                      </ul>
-                    )
+                        <div>
+                          <h2>
+                            <span className="section-title">VEHICLES <span className="caret">&#10225;</span></span>
+                          </h2>
+                          <ul className="elements-container">
+                            {this.state.vehicles.map((elm) => {
+                              return (
+                                <Link key={elm.name} to={`/info/vehicles/${extractId(elm.url)}`}>
+                                  <li>{elm.name}</li>
+                                </Link>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      )
                   }
                 </div>
               </div>
@@ -191,22 +221,32 @@ class InfoPeople extends Component {
             this.props.data.starships.length > 0 
             ? (
               <div className="starships-section">
-                <h2>STARSHIPS</h2>
                 <div>
                   {
                     this.state.starships === null 
-                    ? <button className="button is-outlined" onClick={this.handleStarshipClick.bind(this)}>Show Starships</button>
+                    ? (
+                        <div>
+                          <h2>
+                            <span className="section-title clickable" onClick={this.handleStarshipClick.bind(this)}>STARSHIPS <span className="caret">&#10225;</span></span>
+                          </h2>
+                        </div>
+                      )
                     : (
-                      <ul className="elements-container">
-                        {this.state.starships.map((elm) => {
-                          return (
-                            <Link key={elm.name} to={`/info/starships/${extractId(elm.url)}`}>
-                              <li>{elm.name}</li>
-                            </Link>
-                          )
-                        })}
-                      </ul>
-                    )
+                        <div>
+                          <h2>
+                            <span className="section-title">STARSHIPS <span className="caret">&#10225;</span></span>
+                          </h2>
+                          <ul className="elements-container">
+                            {this.state.starships.map((elm) => {
+                              return (
+                                <Link key={elm.name} to={`/info/starships/${extractId(elm.url)}`}>
+                                  <li>{elm.name}</li>
+                                </Link>
+                              )
+                            })}
+                          </ul>
+                        </div>
+                      )
                   }
                 </div>
               </div>
@@ -214,6 +254,7 @@ class InfoPeople extends Component {
             : null
           }
           </div>
+
         </div>
       </div>
     </div>
@@ -295,6 +336,7 @@ class InfoPeople extends Component {
       });
     }
   }
+
 }
 
 export default InfoPeople

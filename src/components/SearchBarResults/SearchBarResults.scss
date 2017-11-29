@@ -10,11 +10,30 @@
   .column {
 
     .results-content {
-      background-color: #ffffff;
-      border: 1px solid #cacaca;
+      background-color: $white;
+      border: 1px solid $light-color;
+      border-radius: $radius;
+      @include big-shadow();
   
       .results-status {
+        @include h-padding(16px);
+        font-size: 0.9rem;
+        font-style: italic;
+        color: $grey;
+        min-height: 40px;
+        line-height: 40px;
+      }
 
+      .results-items {
+        ul {
+          &:first-child {
+            border-top: 1px solid $light-color;
+          }
+        
+          &:last-child {
+            border-bottom: 1px solid $light-color;
+          }
+        }
       }
     }
   }

@@ -1,0 +1,23 @@
+$primary-color: #3a3a3a;
+$secondary-color: #e9f359;
+$white: #ffffff;
+$light-color: #fafafa;
+$grey: #bebebe;
+
+$dark-primary-color: darken($primary-color, 2%);
+
+$radius: 2px;
+
+@mixin big-shadow() {
+  box-shadow: 0px 0px 10px 3px rgba($color: #414141, $alpha: 0.3)
+}
+
+@mixin h-padding($v) {
+  padding-left: $v;
+  padding-right: $v;
+}
+
+@mixin v-padding($v) {
+  padding-top: $v;
+  padding-bottom: $v;
+}

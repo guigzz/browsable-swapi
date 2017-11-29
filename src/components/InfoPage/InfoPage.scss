@@ -1,4 +1,8 @@
+@import 'styles/theme';
+
 .info-page {
+  margin-top: 30px;
+
   .info-people,
   .info-film,
   .info-planet,
@@ -6,10 +10,90 @@
   .info-vehicle,
   .info-starship {
 
+    background-color: $primary-color;
+    color: $light-color;
+    border-radius: $radius;
+    border: none;
+    margin-bottom: 30px;
+
+    .illustration {
+      img {
+        float: right !important;
+      }
+    }
+
     .title {
       text-align: center;
+      color: $secondary-color;
+      font-weight: normal;
+      font-size: 2rem;
+    }
+
+    a {
+      color: $secondary-color;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .general-info {
+      .field-name {
+        color: $grey;
+      }
+    }
+
+    .links-container {
+      text-align: center;
+      h2 {
+        
+        border-bottom: 1px solid $grey;
+        letter-spacing: 8px;
+        margin-bottom: 10px;
+
+        .section-title {
+          color: $light-color;
+          cursor: default;
+
+          &.clickable {
+            color: $secondary-color;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .elements-container {
+        &:last-child {
+          margin-bottom: 30px;
+        }
+      }
     }
   }
+}
 
-  
+@media screen and (max-width: 768px) {
+  .info-page {
+    .info-people,
+    .info-film,
+    .info-planet,
+    .info-species,
+    .info-vehicle,
+    .info-starship {
+      .illustration {
+        img {
+          float: none !important;
+          display: block;
+          margin: auto;
+        }
+      }
+
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .general-info {
+        text-align: center;
+      }
+    }
+    
+  }
 }

@@ -1,11 +1,29 @@
 @import 'styles/theme';
-.searchbar > .column > div {
-  position: relative;
-}
-.searchbar-header {
-}
 
-@media screen and (max-width: 768px) {
+.searchbar {
+  margin-top: 0;
+  background-color: $dark-primary-color;
+
+  & > .column > div {
+    position: relative;
+  }
+
   .searchbar-header {
+    
+    select {
+      background-color: $primary-color;
+      color: $secondary-color;
+      border-color: $secondary-color;
+    }
+
+    input {
+      background-color: $primary-color;
+      color: $secondary-color;
+      border-color: $secondary-color;
+
+      &::placeholder {
+        color: $secondary-color;
+      }
+    }
   }
 }

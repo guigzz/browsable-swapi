@@ -1,0 +1,23 @@
+@import 'styles/theme';
+
+.searchbar-results-item {
+  @include h-padding(16px);
+  @include v-padding(5px);
+
+  &:hover {
+    background-color: $light-color;
+  }
+
+  .main-text {
+    color: $primary-color;
+    font-size: 1rem;
+
+    &:hover {
+      color: $dark-primary-color;
+    }
+  }
+  .sub-text {
+    color: $grey;
+    font-size: 0.9rem;
+  }
+}
