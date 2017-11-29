@@ -133,7 +133,7 @@ class SearchBar extends Component {
       this.setState({
         showResults: false
       });
-    },100);
+    },300);
     
   }
 
