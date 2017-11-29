@@ -65,12 +65,14 @@ class SearchBar extends Component {
         <div className="column is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-hone-third-fullhd">
           <div>
             <div className="searchbar-header columns is-mobile">
-              <div className="select column is-narrow">
-                <select name="type" value={this.state.type} onChange={this.handleSelectChange.bind(this)}>
-                  { Object.keys(this.state.types).map((t) => {
-                    return <option key={t}>{t}</option>
-                  })}
-                </select>
+              <div className="column is-narrow">
+                <div className="select">
+                  <select name="type" value={this.state.type} onChange={this.handleSelectChange.bind(this)}>
+                    { Object.keys(this.state.types).map((t) => {
+                      return <option key={t}>{t}</option>
+                    })}
+                  </select>
+                </div>
               </div>
               <div className="field column">
                 <p className="control">
