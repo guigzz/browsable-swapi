@@ -142,7 +142,7 @@ class InfoStarship extends Component {
   }
 
   handlePeopleClick(e) {
-    this.handleGenericClick('pilots', 'pilots');
+    this.handleGenericClick('pilots', 'people');
   }
 
   handleFilmClick(e) {
