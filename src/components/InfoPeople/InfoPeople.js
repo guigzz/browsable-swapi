@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './InfoPeople.css';
 import { extractId } from '../../utils/functions';
 import Store from '../../utils/Store';
+import { PLACEHOLDER_IMAGE } from '../../utils/constants';
 
 class InfoPeople extends Component {
   constructor() {
@@ -76,7 +77,7 @@ class InfoPeople extends Component {
         <div className="column">
           <div className="columns">
             <div className="column is-half-tablet illustration">
-              <img className="" src="http://via.placeholder.com/200x300" alt={this.props.data.name} />
+              <img className="" src={PLACEHOLDER_IMAGE} alt={this.props.data.name} />
             </div>
             <div className="column is-half-tablet general-info">
               {this.generalFields.map((field) => {

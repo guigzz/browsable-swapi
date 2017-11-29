@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './InfoFilm.css';
 import { extractId } from '../../utils/functions';
 import Store from '../../utils/Store';
+import { PLACEHOLDER_IMAGE } from '../../utils/constants';
 
 class InfoFilm extends Component {
   constructor() {
@@ -31,7 +32,7 @@ class InfoFilm extends Component {
         <div className="column">
           <div className="columns">
             <div className="column is-half-tablet illustration">
-              <img className="" src="http://via.placeholder.com/200x300" alt={this.props.data.title} />
+              <img className="" src={PLACEHOLDER_IMAGE} alt={this.props.data.title} />
             </div>
             <div className="column is-half-tablet general-info">
               {this.generalFields.map((field) => {
