@@ -2,18 +2,27 @@
 
 .app-banner {
   background-color: $primary-color;
-  color: $secondary-color;
   padding-bottom: 15px;
+  }
 
   .app-banner-logo {
     margin: 0;
     padding: 0;
     text-align: center;
     font-size: 3rem;
+
+    .swg {
+      color: $secondary-color;
+
+      &:hover {
+        color: $light-color;
+      }
+    }
   }
   .app-banner-subtitle {
     text-align: center;
     font-size: 1.2rem;
     margin-top: -50px;
+    color: $secondary-color;
   }
 }
