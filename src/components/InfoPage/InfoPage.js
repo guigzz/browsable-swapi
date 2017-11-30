@@ -8,6 +8,7 @@ import InfoPlanet from '../InfoPlanet/InfoPlanet';
 import InfoSpecies from '../InfoSpecies/InfoSpecies';
 import InfoVehicle from '../InfoVehicle/InfoVehicle';
 import InfoStarship from '../InfoStarship/InfoStarship';
+import Loader from '../Loader/Loader';
 
 class InfoPage extends Component {
   constructor() {
@@ -63,7 +64,7 @@ class InfoPage extends Component {
       }
     }
     else {
-      infoComponent = <h1>Loading...</h1>
+      infoComponent = <Loader text="Loading data..." />
     }
     
     return (
