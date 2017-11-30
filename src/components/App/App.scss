@@ -1,0 +1,10 @@
+@import url('https://rsms.me/inter/inter-ui.css');
+
+body,
+button,
+input,
+select,
+textarea {
+  /* add Inter UI as the prefered font, and leave other bulma fonts here for default */
+  font-family: 'Inter UI', BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
