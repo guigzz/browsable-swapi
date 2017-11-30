@@ -7,9 +7,11 @@
     border-radius: $radius;
     border: none;
     margin-bottom: 30px;
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       @include big-shadow();
+      transform: scale(1.05);
     }
 
     .film-data {
