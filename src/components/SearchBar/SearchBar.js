@@ -63,42 +63,40 @@ class SearchBar extends Component {
     return (
       <div className="searchbar columns is-centered">
         <div className="column is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-hone-third-fullhd">
-          <div>
-            <div className="searchbar-header columns is-mobile">
-              <div className="column is-narrow">
-                <div className="select">
-                  <select name="type" value={this.state.type} onChange={this.handleSelectChange.bind(this)}>
-                    { Object.keys(this.state.types).map((t) => {
-                      return <option key={t}>{t}</option>
-                    })}
-                  </select>
-                </div>
-              </div>
-              <div className="field column">
-                <p className="control">
-                  <input 
-                    className="input" 
-                    ref={(input) => { this.searchInput = input; }}
-                    type="text" 
-                    placeholder="Search" 
-                    value={this.state.search} 
-                    onChange={this.handleSearchChange.bind(this)} 
-                    onFocus={this.handleSearchFocus.bind(this)} 
-                    onBlur={this.handleSearchBlur.bind(this)} />
-                </p>
+          <div className="searchbar-header columns is-mobile">
+            <div className="column is-narrow">
+              <div className="select">
+                <select name="type" value={this.state.type} onChange={this.handleSelectChange.bind(this)}>
+                  { Object.keys(this.state.types).map((t) => {
+                    return <option key={t}>{t}</option>
+                  })}
+                </select>
               </div>
             </div>
-            {
-              this.state.showResults 
-              ? <SearchBarResult 
-                  isSearching={this.state.isSearching} 
-                  results={this.state.results} 
-                  type={this.state.type} 
-                  onClickPrevious={this.handlePreviousResultsClick.bind(this)} 
-                  onClickNext={this.handleNextResultsClick.bind(this)} />
-              : null
-            }
+            <div className="field column">
+              <p className="control">
+                <input 
+                  className="input" 
+                  ref={(input) => { this.searchInput = input; }}
+                  type="text" 
+                  placeholder="Search" 
+                  value={this.state.search} 
+                  onChange={this.handleSearchChange.bind(this)} 
+                  onFocus={this.handleSearchFocus.bind(this)} 
+                  onBlur={this.handleSearchBlur.bind(this)} />
+              </p>
+            </div>
           </div>
+          {
+            this.state.showResults 
+            ? <SearchBarResult 
+                isSearching={this.state.isSearching} 
+                results={this.state.results} 
+                type={this.state.type} 
+                onClickPrevious={this.handlePreviousResultsClick.bind(this)} 
+                onClickNext={this.handleNextResultsClick.bind(this)} />
+            : null
+          }
         </div>
       </div>
     );
