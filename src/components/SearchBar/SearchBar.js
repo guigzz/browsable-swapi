@@ -79,7 +79,7 @@ class SearchBar extends Component {
                   className="input" 
                   ref={(input) => { this.searchInput = input; }}
                   type="text" 
-                  placeholder="Search" 
+                  placeholder="Search..." 
                   value={this.state.search} 
                   onChange={this.handleSearchChange.bind(this)} 
                   onFocus={this.handleSearchFocus.bind(this)} 
