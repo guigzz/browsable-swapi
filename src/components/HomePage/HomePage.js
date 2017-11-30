@@ -86,7 +86,7 @@ class HomePage extends Component {
 
   sort(arr) {
     return arr.sort((a, b) => {
-      return new Date(b.release_date) - new Date(a.release_date);
+      return b.episode_id - a.episode_id;
     });
   }
 }
