@@ -18,7 +18,7 @@ class SearchBarResults extends Component {
               this.props.results.results.length === 0 
               ? <div className="results-content"><div className="results-status">No results</div></div>
               : (<div className="results-content">
-                  <div className="results-status">{this.props.results.count} results</div>
+                  <div className="results-status">{this.props.results.count} result(s)</div>
                   <div className="results-items">
                     <ul>
                       {this.props.results.results.map(r => {
@@ -67,7 +67,7 @@ class SearchBarResults extends Component {
                             this.props.results.previous !== null 
                             ? <button 
                               className="button is-outlined is-pulled-right" 
-                              onClick={this.props.onClickPrevious} >previous</button>
+                              onClick={this.props.onClickPrevious} >&larr; previous</button>
                             : null
                           }
                         </div>
@@ -76,7 +76,7 @@ class SearchBarResults extends Component {
                             this.props.results.next !== null 
                             ? <button 
                               className="button is-outlined" 
-                              onClick={this.props.onClickNext} >next</button> 
+                              onClick={this.props.onClickNext} >next &rarr;</button> 
                             : null
                           }
                         </div>
