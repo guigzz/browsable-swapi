@@ -3,6 +3,7 @@ import './HomePage.css';
 import Store from '../../utils/Store';
 import { API_ROOT } from '../../utils/constants';
 import FilmTile from '../FilmTile/FilmTile';
+import Loader from '../Loader/Loader';
 
 const FILMS_COUNT = 7;
 
@@ -76,7 +77,7 @@ class HomePage extends Component {
                 </div>
               </div>
             )
-            : <div className="columns"><h1>Loading...</h1></div>
+            : <Loader text="Loading the Star Wars universe..." />
           }
         </div>
       </div>
