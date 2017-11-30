@@ -1,0 +1,60 @@
+@import 'styles/theme';
+
+.film-tile-container {
+  .film-tile {
+    background-color: $primary-color;
+    color: $light-color;
+    border-radius: $radius;
+    border: none;
+    margin-bottom: 30px;
+
+    &:hover {
+      @include big-shadow();
+    }
+
+    .film-data {
+      .film-data-content {
+
+        h1 {
+          color: $secondary-color;
+          font-size: 1.5rem;
+          font-weight: normal;
+        }
+        .field-name {
+          color: $grey;
+        }
+        .field-value {
+          color: $light-color;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .film-tile-container {
+    .film-tile {
+
+      margin-left: 24px;
+      margin-right: 24px;
+      .film-image {
+        img {
+          width: 61px;
+          height: 89px;
+        }
+      }
+
+      .film-data {
+        .film-data-content {
+          h1 {
+            font-size: 1rem;
+          }
+
+          .field-name, .field-value {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+  }
+}

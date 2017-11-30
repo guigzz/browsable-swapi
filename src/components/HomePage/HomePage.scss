@@ -1,0 +1,19 @@
+@import 'styles/theme';
+
+.homepage {
+  .homepage-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: $primary-color;
+    font-size : 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .homepage {
+    .homepage-header {
+      font-size : 1rem;
+    }
+  }
+}
