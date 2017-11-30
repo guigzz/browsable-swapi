@@ -23,5 +23,19 @@
     font-size: 1.2rem;
     margin-top: -50px;
     color: $secondary-color;
+    letter-spacing: 5px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app-banner {
+    .app-banner-logo {
+      font-size: 1.5rem;
+    }
+    .app-banner-subtitle {
+      font-size: 0.8rem;
+      margin-top: -20px;
+      letter-spacing: 2px;
+    }
   }
 }
