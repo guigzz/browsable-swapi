@@ -37,6 +37,10 @@ class InfoPage extends Component {
     this.fetchData(nextProps);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     let infoComponent = null;
     if(this.state.data !== null) {
