@@ -1,29 +1,80 @@
 @import 'styles/theme';
 
 .searchbar {
-  margin-top: 0;
   background-color: $dark-primary-color;
+  display: flex; 
+  flex-direction: column;  /* make main axis vertical */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center;
+  @include v-padding(8px);
 
-  & > .column {
+  .searchbar-content {
+    width: 30%; /* will only be 30% when sceen width > 1407px */
     position: relative;
-  }
 
-  .searchbar-header {
-    
-    select {
-      background-color: $primary-color;
-      color: $secondary-color;
-      border-color: $secondary-color;
-    }
-
-    input {
-      background-color: $primary-color;
-      color: $secondary-color;
-      border-color: $secondary-color;
-
-      &::placeholder {
+    .searchbar-header {
+      display: flex;
+      flex-direction: row;     /* make main axis horizontal (default setting) */
+      justify-content: center; /* center items horizontally, in this case */
+      align-items: center;
+      width: 100%;
+      
+      select {
+        background-color: $primary-color;
         color: $secondary-color;
+        border-color: $secondary-color;
+        margin-right: 10px;
       }
+  
+      input {
+        background-color: $primary-color;
+        color: $secondary-color;
+        border-color: $secondary-color;
+  
+        &::placeholder {
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .searchbar {
+    .searchbar-content {
+      width: 93%;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  .searchbar {
+    .searchbar-content {
+      width: 75%;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  .searchbar {
+    .searchbar-content {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1215px) {
+  .searchbar {
+    .searchbar-content {
+      width: 50%;
+    }
+  }
+}
+
+@media screen and (min-width: 1216px) and (max-width: 1407px) {
+  .searchbar {
+    .searchbar-content {
+      width: 40%;
     }
   }
 }

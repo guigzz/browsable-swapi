@@ -2,10 +2,9 @@
 
 .searchbar-results {
   position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
+  padding-top: 8px;
   z-index: 900;
+  width: 100%;
 
   .results-content {
     background-color: $white;
@@ -32,15 +31,6 @@
           border-bottom: 1px solid $light-color;
         }
       }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .searchbar-results {
-    .results-content {
-      margin-left: 16px;
-      margin-right: 16px;
     }
   }
 }
