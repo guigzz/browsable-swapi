@@ -1,7 +1,15 @@
+// the root url of swapi
 export const API_ROOT = "https://swapi.co/api/";
+
+// number of ms of inactivity on the search input to trigger an actual api search request
 export const FETCH_DELAY = 500;
+
+// placeholder image url
 export const PLACEHOLDER_IMAGE = "http://via.placeholder.com/182x268";
-// posers images stored by episode_id, from IMDB API
+
+// posters images stored by episode_id, from IMDB API
+// we could have fetched these programatically,
+// but the imdb API is terribly slow, so for films at least we get the images directly here
 export const POSTERS = [
   // Ep. 1 : The Phantom Menace
   "https://images-na.ssl-images-amazon.com/images/M/MV5BM2FmZGIwMzAtZTBkMS00M2JiLTk2MDctM2FlNTQ2OWYwZDZkXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX182_CR0,0,182,268_AL_.jpg",

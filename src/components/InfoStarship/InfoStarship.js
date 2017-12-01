@@ -9,8 +9,10 @@ class InfoStarship extends Component {
   constructor() {
     super();
 
+    // access to local storage
     this.store = new Store();
-
+    
+    // fields to display in the general info section
     this.generalFields = [
       "model", 
       "manufacturer", 
@@ -57,11 +59,13 @@ class InfoStarship extends Component {
           <div>
           {
             this.props.data.pilots.length > 0 
+            /* There are some associated people */
             ? (
               <div className="people-section">
                 <div>
                   {
                     this.state.people === null 
+                    /* No people data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -69,6 +73,7 @@ class InfoStarship extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some people data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -89,6 +94,7 @@ class InfoStarship extends Component {
                 </div>
               </div>
             )
+            /* There is no associated people */
             : null
           }
           </div>
@@ -97,11 +103,13 @@ class InfoStarship extends Component {
           <div>
           {
             this.props.data.films.length > 0 
+            /* There are some associated films */
             ? (
               <div className="films-section">
                 <div>
                   {
                     this.state.films === null 
+                    /* No films data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -109,6 +117,7 @@ class InfoStarship extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some films data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -129,6 +138,7 @@ class InfoStarship extends Component {
                 </div>
               </div>
             )
+            /* There are no associated films */
             : null
           }
           </div>
@@ -186,6 +196,11 @@ class InfoStarship extends Component {
     }
   }
 
+  /**
+   * Generic function to add someting into the proper state's category
+   * @param {string} type category name
+   * @param {array} val the array to store in state
+   */
   addToState(type, val) {
     if(this.state[type] === null) {
       this.setState({

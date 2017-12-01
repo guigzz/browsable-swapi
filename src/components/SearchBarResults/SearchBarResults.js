@@ -10,13 +10,19 @@ class SearchBarResults extends Component {
       <div className="searchbar-results">
         {
           this.props.isSearching 
-          ? <div className="results-content"><div className="results-status">Searching...</div></div>
+          /* a search into the api is pending */
+          ? <div className="results-content"><div className="results-status">Searching...</div></div> 
+          /* we are not in a 'search pendiong' state */
           : (
             this.props.results.length === 0 
+            /* No results */
             ? null 
+            /* there is something to display */
             : (
               this.props.results.results.length === 0 
+              /* the result to display is 'no result' */
               ? <div className="results-content"><div className="results-status">No results</div></div>
+              /* we have actual results to display */
               : (<div className="results-content">
                   <div className="results-status">{this.props.results.count} result(s)</div>
                   <div className="results-items">
@@ -54,17 +60,23 @@ class SearchBarResults extends Component {
                             subtext = "<Unknown>";
                             break;
                         }
-                        return <Link key={text} to={`/info/${this.props.type}/${extractId(r.url)}`}><SearchBarResultItem text={text} subText={subtext} /></Link>
+                        return (
+                          <Link key={text} to={`/info/${this.props.type}/${extractId(r.url)}`}>
+                            <SearchBarResultItem text={text} subText={subtext} />
+                          </Link>
+                        )
                       })}
                     </ul>
                   </div>
                   {
                     this.props.results.next !== null || this.props.previous !== null 
+                    /* there is more than one result page */
                     ? (
                       <div className="results-nav columns is-mobile">
                         <div className="results-nav-previous column is-half">
                           {
                             this.props.results.previous !== null 
+                            /* we need to be able to see previous result set */
                             ? <button 
                               className="button is-outlined is-pulled-right" 
                               onClick={this.props.onClickPrevious} >&larr; previous</button>
@@ -74,6 +86,7 @@ class SearchBarResults extends Component {
                         <div className="results-nav-next column is-half">
                           {
                             this.props.results.next !== null 
+                            /* we need to be able to see next result set */
                             ? <button 
                               className="button is-outlined" 
                               onClick={this.props.onClickNext} >next &rarr;</button> 

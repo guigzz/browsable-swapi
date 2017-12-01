@@ -9,8 +9,10 @@ class InfoPlanet extends Component {
   constructor() {
     super();
 
+    // access to local storage
     this.store = new Store();
 
+    // fields to display in the general info section
     this.generalFields = [
       "rotation_period", "orbital_period", "diameter", "climate", "gravity", "terrain", "surface_water", "population"
     ];
@@ -46,11 +48,13 @@ class InfoPlanet extends Component {
           <div>
           {
             this.props.data.residents.length > 0 
+            /* There are some associated residents */
             ? (
               <div className="people-section">
                 <div>
                   {
                     this.state.people === null 
+                    /* No people data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -58,6 +62,7 @@ class InfoPlanet extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some people data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -78,6 +83,7 @@ class InfoPlanet extends Component {
                 </div>
               </div>
             )
+            /* There is no associated resident */
             : null
           }
           </div>
@@ -86,11 +92,13 @@ class InfoPlanet extends Component {
           <div>
           {
             this.props.data.films.length > 0 
+            /* There are some associated films */
             ? (
               <div className="films-section">
                 <div>
                   {
                     this.state.films === null 
+                    /* No films data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -98,6 +106,7 @@ class InfoPlanet extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some films data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -118,6 +127,7 @@ class InfoPlanet extends Component {
                 </div>
               </div>
             )
+            /* There are no associated films */
             : null
           }
           </div>
@@ -174,6 +184,11 @@ class InfoPlanet extends Component {
     }
   }
 
+  /**
+   * Generic function to add someting into the proper state's category
+   * @param {string} type category name
+   * @param {array} val the array to store in state
+   */
   addToState(type, val) {
     if(this.state[type] === null) {
       this.setState({

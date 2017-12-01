@@ -9,8 +9,10 @@ class InfoSpecies extends Component {
   constructor() {
     super();
 
+    // access to local storage
     this.store = new Store();
-
+    
+    // fields to display in the general info section
     this.generalFields = [
       "classification", "designation", "average_height", "skin_colors", "hair_colors", "eye_colors", "average_lifespan", "language"
     ];
@@ -60,7 +62,8 @@ class InfoSpecies extends Component {
                 return <p key={field}><span className="field-name">{field}: </span><span className="field-value">{this.props.data[field]}</span></p>
               })}
               {
-                this.state.homeworld !== null
+                this.state.homeworld !== null 
+                /* We have a retrieved homeworld data */
                 ? (
                   <p>
                     <span className="field-name">homeworld: </span>
@@ -71,6 +74,7 @@ class InfoSpecies extends Component {
                     </Link>
                   </p>
                 )
+                /* No homeworld data yet */
                 : null
               }
             </div>
@@ -84,11 +88,13 @@ class InfoSpecies extends Component {
           <div>
           {
             this.props.data.people.length > 0 
+            /* There are some associated people */
             ? (
               <div className="people-section">
                 <div>
                   {
                     this.state.people === null 
+                    /* No people data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -96,6 +102,7 @@ class InfoSpecies extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some people data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -116,6 +123,7 @@ class InfoSpecies extends Component {
                 </div>
               </div>
             )
+            /* There is no associated people */
             : null
           }
           </div>
@@ -124,11 +132,13 @@ class InfoSpecies extends Component {
           <div>
           {
             this.props.data.films.length > 0 
+            /* There are some associated films */
             ? (
               <div className="films-section">
                 <div>
                   {
                     this.state.films === null 
+                    /* No films data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -136,6 +146,7 @@ class InfoSpecies extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some films data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -156,6 +167,7 @@ class InfoSpecies extends Component {
                 </div>
               </div>
             )
+            /* There are no associated films */
             : null
           }
           </div>
@@ -213,6 +225,11 @@ class InfoSpecies extends Component {
     }
   }
 
+  /**
+   * Generic function to add someting into the proper state's category
+   * @param {string} type category name
+   * @param {array} val the array to store in state
+   */
   addToState(type, val) {
     if(this.state[type] === null) {
       this.setState({

@@ -7,13 +7,18 @@ import Loader from '../Loader/Loader';
 
 const FILMS_COUNT = 7;
 
+/**
+ * Home page main container
+ */
 class HomePage extends Component {
 
   constructor() {
     super();
 
+    // access to local storage
     this.store = new Store();
 
+    // list of films
     this.existingFilms = [];
     this.toBeFetchedFilms = [];
 
@@ -21,7 +26,11 @@ class HomePage extends Component {
       films: null
     };
   }
+  
   componentDidMount() {
+    // first, sort all films according to
+    // whether we already have it in local storage
+    // or not
     for(let i = 1; i <= FILMS_COUNT; i++) {
       const filmUrl = `${API_ROOT}films/${i}/`;
       const oneFilm = this.store.get(filmUrl);
@@ -33,24 +42,26 @@ class HomePage extends Component {
       }
     }
 
+    // we already have all films
     if(this.toBeFetchedFilms.length === 0) {
-      // nothing to fetch, we already have all we need
       this.setState({
         films: this.sort(this.existingFilms)
       });
     }
-    else {
+    else { // some things need to be fetched
       for(let url of this.toBeFetchedFilms) {
         console.log("fetching ", url);
         fetch(url)
         .then( response => response.json())
         .then( (res) => {
+          // add the fetched film to the existing films list
           this.existingFilms.push(res);
+          // store it in local storage
           this.store.set(url, res);
+          // only if we now have all films, set state
           if(this.existingFilms.length === FILMS_COUNT) {
-            // we have all we need now
             this.setState({
-              films: this.sort(this.existingFilms)
+              films: this.sort(this.existingFilms) // sort by DESC episode id
             });
           }
         });
@@ -65,6 +76,7 @@ class HomePage extends Component {
         <div className="columns"><div className="column homepage-header"><h1>...Or start exploring the Star Wars universe here:</h1></div></div>
           {
             this.state.films !== null 
+            /* there are films in the state */
             ? (
               <div className="columns">
                 <div className="column">
@@ -77,6 +89,7 @@ class HomePage extends Component {
                 </div>
               </div>
             )
+            /* there is no film in the state, means we are currently retrieving them, wait... */
             : <Loader text="Loading the Star Wars universe..." />
           }
         </div>
@@ -84,6 +97,10 @@ class HomePage extends Component {
     )
   }
 
+  /**
+   * Sort the list of film by descending episode id
+   * @param {array} arr an array of film objects 
+   */
   sort(arr) {
     return arr.sort((a, b) => {
       return b.episode_id - a.episode_id;

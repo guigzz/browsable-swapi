@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './FilmTile.css';
 import { POSTERS } from '../../utils/constants';
 
+/**
+ * A film tile on the home page
+ */
 class FilmTile extends Component {
   render() {
     return (
@@ -28,6 +31,10 @@ class FilmTile extends Component {
     )
   }
 
+  /**
+   * return the Roman number from the episode ID
+   * @param {int} ep The episode ID 
+   */
   formatEpisode(ep) {
     switch (ep) {
       case 1:

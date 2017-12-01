@@ -5,12 +5,17 @@ import { extractId } from '../../utils/functions';
 import Store from '../../utils/Store';
 import { POSTERS } from '../../utils/constants';
 
+/**
+ * A tile to display data about a film
+ */
 class InfoFilm extends Component {
   constructor() {
     super();
 
+    // access local storage
     this.store = new Store();
 
+    // data to display first, aside the image
     this.generalFields = [
       "episode_id", "director", "producer", "release_date"
     ];
@@ -61,11 +66,13 @@ class InfoFilm extends Component {
           <div>
           {
             this.props.data.characters.length > 0 
+            /* There are some associated characters */
             ? (
               <div className="people-section">
                 <div>
                   {
                     this.state.people === null 
+                    /* No people data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -73,6 +80,7 @@ class InfoFilm extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some people data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -93,6 +101,7 @@ class InfoFilm extends Component {
                 </div>
               </div>
             )
+            /* There is no associated character */
             : null
           }
           </div>
@@ -101,11 +110,13 @@ class InfoFilm extends Component {
           <div>
           {
             this.props.data.planets.length > 0 
+            /* There are some associated planets */
             ? (
               <div className="planets-section">
                 <div>
                   {
                     this.state.planets === null 
+                    /* No planets data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -113,6 +124,7 @@ class InfoFilm extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some planets data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -133,6 +145,7 @@ class InfoFilm extends Component {
                 </div>
               </div>
             )
+            /* There are no associated planets */
             : null
           }
           </div>
@@ -141,11 +154,13 @@ class InfoFilm extends Component {
           <div>
           {
             this.props.data.starships.length > 0 
+            /* There are some associated starships */
             ? (
               <div className="starships-section">
                 <div>
                   {
                     this.state.starships === null 
+                    /* No starships data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -153,6 +168,7 @@ class InfoFilm extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some starships data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -173,6 +189,7 @@ class InfoFilm extends Component {
                 </div>
               </div>
             )
+            /* There are no associated starships */
             : null
           }
           </div>
@@ -181,11 +198,13 @@ class InfoFilm extends Component {
           <div>
           {
             this.props.data.vehicles.length > 0 
+            /* There are some associated vehicles */
             ? (
               <div className="vehicles-section">
                 <div>
                   {
                     this.state.vehicles === null 
+                    /* No vehicles data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -193,6 +212,7 @@ class InfoFilm extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some vehicles data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -213,6 +233,7 @@ class InfoFilm extends Component {
                 </div>
               </div>
             )
+            /* There are no associated vehicles */
             : null
           }
           </div>
@@ -221,11 +242,13 @@ class InfoFilm extends Component {
           <div>
           {
             this.props.data.species.length > 1 
+            /* There are more than one associated species, display species here instead of in the general info section */
             ? (
               <div className="species-section">
                 <div>
                   {
                     this.state.species === null 
+                    /* No species data has been fetched yet, display clickable title */
                     ? (
                         <div>
                           <h2>
@@ -233,6 +256,7 @@ class InfoFilm extends Component {
                           </h2>
                         </div>
                       )
+                      /* there are some species data fetched, display */
                     : (
                         <div>
                           <h2>
@@ -253,6 +277,7 @@ class InfoFilm extends Component {
                 </div>
               </div>
             )
+            /* There are no associated species to display here */
             : null
           }
           </div>
@@ -325,6 +350,11 @@ class InfoFilm extends Component {
     }
   }
 
+  /**
+   * Generic function to add someting into the proper state's category
+   * @param {string} type category name
+   * @param {array} val the array to store in state
+   */
   addToState(type, val) {
     if(this.state[type] === null) {
       this.setState({

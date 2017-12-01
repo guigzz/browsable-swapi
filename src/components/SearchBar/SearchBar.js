@@ -23,7 +23,7 @@ class SearchBar extends Component {
   }
 
   componentDidMount() {
-    // get all types which can be queried
+    // get all types which can be queried, to fill the select
     fetch(API_ROOT)
     .then( response => response.json())
     .then( (list) => {
@@ -36,13 +36,19 @@ class SearchBar extends Component {
     });
   }
 
+  /**
+   * Trigger a search or wait until the search delay is over
+   * this allows the user to not trigger an actual search
+   * everytime he's typing one letter in the search bar
+   * @param {string} what the user search input
+   */
   search(what) {
     clearTimeout(this.fetchLock);
     this.fetchLock = setTimeout(() => {
       fetch(this.state.types[this.state.type] + SEARCH + what.toLowerCase())
       .then( response => response.json())
       .then( (res) => {
-        // just in case we receive un previous search result while searching an empty string
+        // just in case we receive a previous search result while searching an empty string
         if(this.state.search.length !== 0) {
           return this.setState({
             results: res,
@@ -89,12 +95,14 @@ class SearchBar extends Component {
           </div>
           {
             this.state.showResults 
+            /* we have results to show */
             ? <SearchBarResult 
                 isSearching={this.state.isSearching} 
                 results={this.state.results} 
                 type={this.state.type} 
                 onClickPrevious={this.handlePreviousResultsClick.bind(this)} 
                 onClickNext={this.handleNextResultsClick.bind(this)} />
+            /* we have found no results */
             : null
           }
         </div>
@@ -121,12 +129,18 @@ class SearchBar extends Component {
     }
   }
 
+  /**
+   * when the search input gains focus
+   */
   handleSearchFocus(e) {
     this.setState({
       showResults: true
     });
   }
 
+  /**
+   * when the search input loses focus
+   */
   handleSearchBlur(e) {
     // set timeout so that the click on an item Link effectively happen
     setTimeout(() => {

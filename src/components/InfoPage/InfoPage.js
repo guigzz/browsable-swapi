@@ -38,6 +38,7 @@ class InfoPage extends Component {
   }
 
   componentDidUpdate() {
+    // scroll to top of the page whenever the info page content updates itself
     window.scrollTo(0, 0);
   }
 
@@ -82,6 +83,7 @@ class InfoPage extends Component {
     const resourceUrl = `${API_ROOT}${props.match.params.type}/${props.match.params.id}/`;
     const localData = this.store.get(resourceUrl);
     if(localData !== null) {
+      // set data we already have from local storage into state
       this.setState({
         data: localData
       });
@@ -90,12 +92,15 @@ class InfoPage extends Component {
       this.setState({ // reset, so we can use this transition-state to display a loader
         data: null
       });
+      // fetch data we don't have yet
       fetch(resourceUrl)
       .then( response => response.json())
       .then( (data) => {
+        // set retrieved data into state
         this.setState({
           data: data
         });
+        // and store it in local storage for future use
         this.store.set(resourceUrl, data);
       });
     }
