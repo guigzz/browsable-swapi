@@ -241,8 +241,8 @@ class InfoFilm extends Component {
           {/* SPECIES */}
           <div>
           {
-            this.props.data.species.length > 1 
-            /* There are more than one associated species, display species here instead of in the general info section */
+            this.props.data.species.length > 0 
+            /* There are species data to display */
             ? (
               <div className="species-section">
                 <div>
